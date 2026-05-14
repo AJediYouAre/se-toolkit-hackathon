@@ -1,0 +1,63 @@
+{
+  "_comment": "All user-facing text. Edit this file and refresh the page to see changes — no server restart needed.",
+
+  "site_title": "Recipe Rotator",
+  "brand": "🍳 Recipe Rotator",
+
+  "nav_home": "🏠 Home",
+  "nav_recipes": "📃 All Recipes",
+  "nav_new": "➕ New Recipe",
+  "nav_logout": "🚪 Logout",
+  "nav_login": "Login",
+  "nav_register": "Register",
+
+  "hero_title": "🍳 Dice & Dine",
+  "hero_subtitle": "Dice & Dine - Store your recipes and get a dinner idea in one click",
+  "hero_cta_start": "Get Started",
+  "hero_cta_login": "Already have an account?",
+
+  "today_recipe": "🎲 Today's recipe:",
+  "ingredients": "Ingredients:",
+  "instructions": "Instructions:",
+  "btn_another": "🎲 Another recipe",
+  "btn_details": "Details",
+  "added_on": "Added:",
+  "error_loading": "Error",
+
+  "no_recipes_yet": "You don't have any recipes yet",
+  "no_recipes_hint": "Add your first recipe to get started!",
+  "btn_add_recipe": "+ Add Recipe",
+
+  "all_recipes_count": "📋 All Recipes ({count})",
+  "btn_new_recipe": "+ New Recipe",
+  "no_recipes_list": "No recipes yet. <a href=\"/recipes/new\">Add your first one!</a>",
+  "btn_open": "Open",
+
+  "delete_confirm": "Delete this recipe? This action cannot be undone.",
+  "delete_error": "Error deleting recipe",
+  "btn_edit": "✏️ Edit",
+  "btn_delete": "🗑️ Delete",
+  "btn_back": "← Back to list",
+
+  "new_recipe_title": "➕ New Recipe",
+  "label_dish_name": "Dish name",
+  "label_ingredients": "Ingredients (one per line)",
+  "label_instructions": "Cooking instructions",
+  "label_image_url": "Image URL (optional)",
+  "placeholder_image_url": "https://example.com/image.jpg",
+  "btn_cancel": "Cancel",
+  "btn_save": "Save",
+
+  "edit_recipe_title": "✏️ Edit Recipe",
+  "label_image_url_edit": "Image URL",
+
+  "register_title": "📝 Register",
+  "label_username": "Username",
+  "label_password": "Password",
+  "btn_register": "Register",
+  "register_has_account": "Already have an account? <a href=\"/login\">Login</a>",
+
+  "login_title": "🔑 Login",
+  "btn_login": "Login",
+  "login_no_account": "No account? <a href=\"/register\">Register</a>"
+}

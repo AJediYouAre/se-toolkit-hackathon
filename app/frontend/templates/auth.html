@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ============================================= -->
+<!-- LOGIN / REGISTER FORM                         -->
+<!-- ============================================= -->
+<div class="card mx-auto" style="max-width: 420px;">
+    <div class="card-body">
+        <h2 class="mb-4 text-center">{{ form_title }}</h2>
+        <form method="post" action="{{ form_action }}">
+            <div class="mb-3">
+                <label class="form-label">{{ label_username }}</label>
+                <input type="text" name="username" class="form-control" required minlength="3" maxlength="50">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">{{ label_password }}</label>
+                <input type="password" name="password" class="form-control" required minlength="4">
+            </div>
+            <button type="submit" class="btn {{ btn_class }} w-100">{{ btn_submit }}</button>
+        </form>
+        <p class="text-center mt-3 mb-0">{{ bottom_link | safe }}</p>
+    </div>
+</div>
+
+{% endblock %}

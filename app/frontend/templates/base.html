@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ texts.site_title }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- ============================================= -->
+<!-- NAVIGATION BAR                                -->
+<!-- ============================================= -->
+{% if user %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/">{{ texts.brand }}</a>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="/">{{ texts.nav_home }}</a>
+            <a class="nav-link" href="/recipes">{{ texts.nav_recipes }}</a>
+            <a class="nav-link" href="/recipes/new">{{ texts.nav_new }}</a>
+            <span class="nav-link text-light">👤 {{ user.username }}</span>
+            <a class="nav-link" href="/logout">{{ texts.nav_logout }}</a>
+        </div>
+    </div>
+</nav>
+{% else %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="/">{{ texts.brand }}</a>
+        <div class="navbar-nav ms-auto">
+            <a class="nav-link" href="/login">{{ texts.nav_login }}</a>
+            <a class="nav-link" href="/register">{{ texts.nav_register }}</a>
+        </div>
+    </div>
+</nav>
+{% endif %}
+
+<!-- ============================================= -->
+<!-- PAGE CONTENT (overridden by each template)     -->
+<!-- ============================================= -->
+<div class="container" style="max-width: 900px;">
+    {% block content %}{% endblock %}
+</div>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

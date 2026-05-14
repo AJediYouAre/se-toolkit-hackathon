@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ============================================= -->
+<!-- CREATE / EDIT RECIPE FORM                     -->
+<!-- ============================================= -->
+<div class="card mx-auto" style="max-width: 650px;">
+    <div class="card-body">
+        <h3 class="mb-4">{{ form_title }}</h3>
+        <form method="post" action="{{ form_action }}" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label class="form-label">{{ label_dish_name }}</label>
+                <input type="text" name="title" class="form-control" value="{{ recipe.title if recipe else '' }}" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">{{ label_ingredients }}</label>
+                <textarea name="ingredients" class="form-control" rows="6" required>{{ recipe.ingredients if recipe else '' }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">{{ label_instructions }}</label>
+                <textarea name="instructions" class="form-control" rows="8" required>{{ recipe.instructions if recipe else '' }}</textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">{{ label_image_url }}</label>
+                <input type="file" name="image" class="form-control" accept="image/*">
+                {% if recipe and recipe.image_url %}
+                <div class="mt-2">
+                    <small class="text-muted">Current image:</small>
+                    <img src="{{ recipe.image_url }}" alt="current" style="max-height:60px; display:block; margin-top:4px;">
+                </div>
+                {% endif %}
+            </div>
+            <div class="d-flex justify-content-between">
+                <a href="{{ cancel_url }}" class="btn btn-outline-secondary">{{ texts.btn_cancel }}</a>
+                <button type="submit" class="btn btn-success">{{ texts.btn_save }}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

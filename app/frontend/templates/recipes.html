@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ============================================= -->
+<!-- ALL RECIPES LIST                              -->
+<!-- ============================================= -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>{{ all_recipes_count }}</h2>
+    <a href="/recipes/new" class="btn btn-success">{{ texts.btn_new_recipe }}</a>
+</div>
+
+{% if recipes %}
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+    {% for r in recipes %}
+    <div class="col">
+        <a href="/recipes/{{ r.id }}" class="text-decoration-none">
+            <div class="card compact-recipe-card h-100">
+                <div class="card-body">
+                    <div class="content">
+                        <h5 class="card-title">{{ r.title }}</h5>
+                        <p class="card-text text-muted small" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            {{ r.ingredients[:100] }}...
+                        </p>
+                        <small class="text-muted">{{ r.created_at.strftime('%Y-%m-%d') }}</small>
+                    </div>
+                    <div class="picture">
+                        <div class="bg"></div>
+                        <div class="picture-container">
+                            {% if r.image_url %}
+                            <img src="{{ r.image_url }}" alt="{{ r.title }}">
+                            {% else %}
+                            <div class="picture-placeholder">📷</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p class="text-muted text-center">{{ no_recipes_list | safe }}</p>
+{% endif %}
+
+{% endblock %}

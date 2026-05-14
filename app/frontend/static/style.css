@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Gloria+Hallelujah&display=swap');
+
+body {
+    background: #f8f9fa;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 1.2rem;
+    min-height: calc(100vh - 4rem);
+    margin-top: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+body > nav.mb-4 {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    margin: 0 !important;
+    z-index: 10;
+}
+.container {
+    max-height: 90vh;
+}
+
+
+.compact-recipe-card {
+    transition: transform .2s, box-shadow .15s;
+}
+.compact-recipe-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .15);
+}
+
+/* ============================================
+   Large recipe card (index + detail)
+   Picture covers entire card behind the text
+   ============================================ */
+.recipe-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.recipe-card .card-body {
+    position: relative;
+    min-height: 280px;
+}
+.recipe-card .card-body .content {
+    max-width: 60%;
+}
+.recipe-card .picture:has(.picture-placeholder) {
+    width: calc(40% - 1rem);
+    left: 60%;
+    right: 0;
+}
+
+/* Picture — position: absolute covering the whole card body */
+.recipe-card .picture {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recipe-card .picture img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
+.recipe-card .picture .picture-placeholder {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+    background: #ccc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    border-radius: inherit;
+    filter: grayscale(100%);
+    opacity: 0.4;
+}
+
+/* Content — sits on top of the picture with gradient background */
+.recipe-card .content {
+    position: relative;
+    z-index: 1;
+    max-height: 70vh;
+    background: #fffd;
+    backdrop-filter: blur(4px);
+    padding: 1.25rem;
+    border-radius: inherit;
+}
+
+.recipe-card .content .card-title {
+    margin: 0;
+    position: sticky;
+    top: 0;
+    background: transparent;
+    padding: 0.25rem 0;
+}
+.recipe-card .content .scrollable {
+    max-height: 55vh;
+    overflow-y: auto;
+}
+.recipe-card.edit .content .scrollable {
+    max-height: 50vh;
+}
+
+/* Compact cards in /recipes list — keep simpler layout */
+.compact-recipe-card .card-body {
+    position: relative;
+    min-height: 140px;
+    overflow: hidden;
+}
+.compact-recipe-card .picture {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0;
+    z-index: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+.compact-recipe-card .picture .bg {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,1) 50%,
+        rgba(255,255,255,0.8) 75%,
+        rgba(255,255,255,0) 100%
+    );
+}
+.compact-recipe-card .picture .picture-container {
+    width: 80%;
+    height: 100%;
+    transform: translateX(6rem);
+}
+.compact-recipe-card .picture .picture-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+}
+.compact-recipe-card .picture .picture-placeholder {
+    opacity: 0;
+}
+.compact-recipe-card .content {
+    position: relative;
+    z-index: 1;
+    padding: 0.75rem;
+    border-radius: inherit;
+    z-index: 5;
+}
+
+.rand-btn-wrapper {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+}
+.rand-btn {
+    font-size: 1.1rem;
+    padding: .5rem 2rem;
+}
+/* Push content up so it's not hidden behind the fixed button */
+#random-result {
+    padding-bottom: 5rem;
+}
+
+.hero-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .recipe-card .content {
+        background: rgba(255,255,255,0.95);
+    }
+    .compact-recipe-card .content {
+        background: rgba(255,255,255,0.95);
+    }
+}

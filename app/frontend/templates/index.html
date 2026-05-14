@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<!-- ============================================= -->
+<!-- LANDING PAGE (not logged in)                  -->
+<!-- ============================================= -->
+{% if not user %}
+<div class="hero-bg text-center">
+    <h1>{{ hero_title }}</h1>
+    <p class="lead mb-0">{{ hero_subtitle }}</p>
+</div>
+<div class="text-center mt-4">
+    <a href="/register" class="btn btn-primary btn-lg me-2">{{ hero_cta_start }}</a>
+    <a href="/login" class="btn btn-outline-secondary btn-lg">{{ hero_cta_login }}</a>
+</div>
+
+<!-- ============================================= -->
+<!-- LOGGED IN: Random recipe                      -->
+<!-- ============================================= -->
+{% else %}
+{% if recipe %}
+<div class="mb-3 text-center">
+    <h3>{{ today_recipe }}</h3>
+</div>
+<div class="card recipe-card mb-4">
+    <div class="card-body">
+        <div class="content">
+            <h4 class="card-title">{{ recipe.title }}</h4>
+            <div class="scrollable">
+                <h6 class="text-muted mt-3">{{ texts.ingredients }}</h6>
+                <ul>
+                {% for line in recipe.ingredients.splitlines() %}
+                    {% if line.strip() %}<li>{{ line.strip() }}</li>{% endif %}
+                {% endfor %}
+                </ul>
+                <h6 class="text-muted mt-3">{{ texts.instructions }}</h6>
+                <p style="white-space: pre-line;">{{ recipe.instructions }}</p>
+            </div>
+            <div class="recipe-controls d-flex justify-content-between align-items-center mt-3">
+                <a href="/recipes/{{ recipe.id }}" class="btn btn-outline-info btn-sm">{{ texts.btn_details }}</a>
+                <span class="text-muted small">{{ texts.added_on }} {{ recipe.created_at.strftime('%Y-%m-%d') }}</span>
+            </div>
+        </div>
+        <div class="picture">
+            {% if recipe.image_url %}
+            <img src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
+            {% else %}
+            <div class="picture-placeholder">📷</div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div id="random-result" class="mt-4 mb-5"></div>
+<div class="rand-btn-wrapper text-center">
+    <button onclick="loadRandom()" class="btn btn-warning rand-btn me-2">{{ texts.btn_another }}</button>
+    <span id="random-msg"></span>
+</div>
+
+{% else %}
+<!-- No recipes yet -->
+<div class="text-center mt-5">
+    <h2>{{ texts.no_recipes_yet }}</h2>
+    <p class="text-muted">{{ texts.no_recipes_hint }}</p>
+    <a href="/recipes/new" class="btn btn-success btn-lg">{{ texts.btn_add_recipe }}</a>
+</div>
+{% endif %}
+{% endif %}
+
+{% endblock %}
