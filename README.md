@@ -58,17 +58,66 @@ A web application that stores your personal recipe collection and offers one ran
 
 ## Deployment
 
-### OS
+### Option 1: Docker (Recommended)
 
 The VM should run **Ubuntu 24.04 LTS** (or any modern Linux distribution).
 
-### Required Software
+#### Required Software
+
+- Docker 24+
+- Docker Compose v2+
+
+#### Step-by-step Deployment Instructions
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/AJediYouAre/se-toolkit-hackathon.git
+cd se-toolkit-hackathon
+
+# 2. Start all services (builds the image, creates DB, seeds data)
+docker compose up -d --build
+
+# 3. Check status
+docker compose ps
+```
+
+The application will be available at **http://your-vm-ip:8000**
+
+Demo credentials: `demo` / `demo123`
+
+#### Useful Docker Commands
+
+```bash
+# View logs
+docker compose logs -f web
+docker compose logs -f db
+
+# Stop all services
+docker compose down
+
+# Stop and remove all data (including database volume)
+docker compose down -v
+
+# Restart after code changes
+docker compose up -d --build
+```
+
+#### Architecture
+
+- **`web` service** — FastAPI application (port 8000)
+- **`db` service** — PostgreSQL 16 database (port 5432, internal only)
+- **`pgdata` volume** — persistent database storage (survives container restarts)
+- **`uploads` volume** — persistent storage for uploaded recipe images
+
+### Option 2: Manual (without Docker)
+
+#### Required Software
 
 - Python 3.11+
 - pip (Python package manager)
 - Git
 
-### Step-by-step Deployment Instructions
+#### Step-by-step Deployment Instructions
 
 ```bash
 # 1. Clone the repository
@@ -94,7 +143,7 @@ The application will be available at **http://your-vm-ip:8000**
 
 Demo credentials: `demo` / `demo123`
 
-### Using as a systemd service (optional)
+#### Using as a systemd service (optional)
 
 Create `/etc/systemd/system/recipe-rotator.service`:
 
